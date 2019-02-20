@@ -48,7 +48,7 @@ def unescaped_str(arg_str):
 #get arguments
 parser = argparse.ArgumentParser()
 parser.add_argument("-f","--file",default='CMEP_Format_sample.txt',type=str,help="filename of CMEP file (ex: /tmp/CMEP_Format_sample.txt)",required=False)
-parser.add_argument("-d","--delimiter",default='\t',type=unescaped_str,help="Delimiter used in CMEP file, in quotes ( ex: ',' , '|', '\t' )",required=False)
+parser.add_argument("-d","--delimiter",default='\t',type=unescaped_str,help="Delimiter used in CMEP file, in quotes ( ex: ',' , '|', '\\t' )",required=False)
 parser.add_argument("-r","--read_start_column",default=14,type=int,help="Column which interval reads start in CMEP file (default: 14)",required=False)
 parser.add_argument('--header', dest='skip_header', action='store_true',help="File contains a header (default)")
 parser.add_argument('--no-header', dest='skip_header', action='store_false',help="File does NOT contain a header")
