@@ -1,4 +1,4 @@
-# parse_cmep
+# parse_cmep.py
 Parse a delimited CMEP (California Metering Exchange Protocol) file to a single value row CSV
 
 ```
