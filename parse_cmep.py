@@ -5,14 +5,14 @@ note: this uses Python 3
  
 This will parse a delimited CMEP file into single row CSV records. 
 
-Usage			: python3 parse_cmep.py -f CMEP_Format_sample.txt -d '\t' -r 14 --header
+Usage				: python3 parse_cmep.py -f CMEP_Format_sample.txt -d '\t' -r 14 --header
 
 Outputted rows 		: [Meter ID], [Constant Calculation], [Timestamp], [Quality Code], [Value]
 Outputted filename	: parsed_cmep_[commodity id]_[unit of measurement]_[process id].csv
 
-Author 			: Mike Czabator
+Author 				: Mike Czabator
 
-example			: 
+example				: 
 
 mike@lenovo ~/mike/tools/cmep_file_parser
 $ python3 parse_cmep.py --delimiter '\t' --file CMEP_Format_sample.txt --header
@@ -40,6 +40,7 @@ $ head parsed_cmep_E_KWH.27772.csv
 import argparse
 import os
 import codecs
+import time
 
 def unescaped_str(arg_str):
 	return codecs.decode(str(arg_str), 'unicode_escape')
@@ -56,6 +57,7 @@ args = parser.parse_args()
 
 
 def parse_file(): 
+	startTime = time.time()
 	line_number = 0
 	record_count= 0
 	with open(args.file,"r") as f:
@@ -91,7 +93,8 @@ def parse_file():
 				read_start_column+=3
 		f.close()
 		outfile.close()
-		print("\n***************\nInput file           : "+args.file+"\ninput CMEP file lines: "+str(line_number)+"\noutput CSV lines     : "+str(record_count)+"\n***************\n")
+		endTime = time.time()
+		print("\n***************\nInput file           : "+args.file+"\ninput CMEP file lines: "+str(line_number)+"\noutput CSV lines     : "+str(record_count)+"\ntime                 : "+str(endTime-startTime)+" seconds / "+str(((endTime-startTime)/60))+" minutes \n***************\n")
 		
 if __name__== "__main__":
   parse_file()
