@@ -7,15 +7,16 @@ This will parse a delimited CMEP file into single row CSV records.
 
 Usage			: python3 parse_cmep.py -f CMEP_Format_sample.txt -d '\t' -r 14 --header
 
-Outputted rows 		: [Meter ID], [Constant Calculation], [Timestamp], [Quality Code], [Value]
+Outputted rows		: [Meter ID], [Timestamp], [Unit of measurement], [Constant Calculation], [Quality Code], [Value]
 Outputted filename	: parsed_cmep_[commodity id]_[unit of measurement]_[process id].csv
 
-Author 			: Mike Czabator
+Author			: Mike Czabator
 
 example			: 
 
 mike@lenovo ~/mike/tools/cmep_file_parser
 $ python3 parse_cmep.py --delimiter '\t' --file CMEP_Format_sample.txt --header
+
 ***************
 Input file           : CMEP_Format_sample.txt
 input CMEP file lines: 10000
@@ -25,16 +26,16 @@ time                 : 2.2290380001068115 seconds / 0 minutes
 
 mike@lenovo ~/mike/tools/cmep_file_parser
 $ head parsed_cmep_E_KWH.27772.csv
-123456,1,201811020700,,1.23
-123456,1,201811020800,,1.173
-123456,1,201811020900,,1.173
-123456,1,201811021000,,1.173
-123456,1,201811021100,,1.173
-123456,1,201811021200,,1.23
-123456,1,201811021300,,1.23
-123456,1,201811021400,,1.288
-123456,1,201811021500,,1.23
-123456,1,201811021600,,1.23
+123456,201811020700,KWH,1,,1.23
+123456,201811020800,KWH,1,,1.173
+123456,201811020900,KWH,1,,1.173
+123456,201811021000,KWH,1,,1.173
+123456,201811021100,KWH,1,,1.173
+123456,201811021200,KWH,1,,1.23
+123456,201811021300,KWH,1,,1.23
+123456,201811021400,KWH,1,,1.288
+123456,201811021500,KWH,1,,1.23
+123456,201811021600,KWH,1,,1.23
 
 '''
 import argparse
@@ -84,8 +85,8 @@ def parse_file():
 					read_start_column+=3
 					continue
 
-				try: # METER ID, Constant Calculation, Timestamp, Quality code, Value
-					outline = '{0},{1},{2},{3},{4}\n'.format(record[7],record[11],record[read_start_column],record[read_start_column+1],record[read_start_column+2])
+				try: # METER ID, Timestamp, Unit of measurement, Constant Calculation, Quality code, Value
+					outline = '{0},{1},{2},{3},{4},{5}\n'.format(record[7],record[read_start_column],record[10],record[11],record[read_start_column+1],record[read_start_column+2])
 					record_count+=1
 					outfile.write(outline)
 				except:
