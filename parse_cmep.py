@@ -16,11 +16,11 @@ example				:
 
 mike@lenovo ~/mike/tools/cmep_file_parser
 $ python3 parse_cmep.py --delimiter '\t' --file CMEP_Format_sample.txt --header
-
 ***************
 Input file           : CMEP_Format_sample.txt
 input CMEP file lines: 10000
 output CSV lines     : 96755
+time                 : 2.2290380001068115 seconds / 0 minutes
 ***************
 
 mike@lenovo ~/mike/tools/cmep_file_parser
