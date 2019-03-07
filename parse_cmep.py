@@ -5,14 +5,14 @@ note: this uses Python 3
  
 This will parse a delimited CMEP file into single row CSV records. 
 
-Usage			: python3 parse_cmep.py -f CMEP_Format_sample.txt -d '\t' -r 14 --header
+Usage				: python3 parse_cmep.py -f CMEP_Format_sample.txt -d '\t' -r 14 --header
 
 Outputted rows		: [Meter ID], [Timestamp], [Unit of measurement], [Constant Calculation], [Quality Code], [Value]
 Outputted filename	: parsed_cmep_[commodity id]_[unit of measurement]_[process id].csv
 
-Author			: Mike Czabator
+Author				: Mike Czabator
 
-example			: 
+example				: 
 
 mike@lenovo ~/mike/tools/cmep_file_parser
 $ python3 parse_cmep.py --delimiter '\t' --file CMEP_Format_sample.txt --header
@@ -73,14 +73,14 @@ def parse_file():
 			#skip blank lines
 			if(line in ('\n','\r\n')):
 				continue
-			
+			line = line.rstrip()
 			line_number+=1
 			record = []
 			record = line.split(args.delimiter) #split by the delimiter 
 
 			#open file  parsed_cmep_+"+[commodity id]+"_"+[units]+"."+[process id].csv
 			outfile = open("parsed_cmep_"+record[9]+"_"+record[10]+"."+str(os.getpid())+".csv","a")
-			while read_start_column <= len(record):
+			while read_start_column < len(record):
 				if record[read_start_column] == "": 
 					read_start_column+=3
 					continue
